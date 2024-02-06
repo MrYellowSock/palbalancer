@@ -36,7 +36,6 @@ class Window(QWidget):
 if __name__ == "__main__":
     setElementDict()
     palTable: pd.DataFrame = pd.read_csv('./resource/PalData.csv')
-    elementPowerTable = pd.read_csv('./resource/PalElementPower.csv')
     print(ElementTable.instance().getRelationTable())
     elementPowerTable = pd.DataFrame(ElementTable.instance().getRelationTable())
     # ["Name", "MeleeAttack", "ShotAttack", "HP", "Image"]
