@@ -2,11 +2,12 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QPushButton, QVBoxLayout, QWidget, QTabWidget,QMessageBox
 import pandas as pd
 from PyQt5.QtGui import QIcon
-from Pal import Pal
+from PalModule import Pal
 from PalTable import PalTable
 from PalElementPowerTable import PalElementPowerTable
 from PalMatch import PalMatch
-
+from DeriveElement import setElementDict
+from Element import ElementTable
 class Window(QWidget):
     def __init__(self, pals:list[Pal], powerTable: pd.DataFrame):
         QWidget.__init__(self)
@@ -33,8 +34,11 @@ class Window(QWidget):
         
 
 if __name__ == "__main__":
+    setElementDict()
     palTable: pd.DataFrame = pd.read_csv('./resource/PalData.csv')
     elementPowerTable = pd.read_csv('./resource/PalElementPower.csv')
+    print(ElementTable.instance().getRelationTable())
+    elementPowerTable = pd.DataFrame(ElementTable.instance().getRelationTable())
     # ["Name", "MeleeAttack", "ShotAttack", "HP", "Image"]
     pals = palTable.apply(lambda row: Pal(row["Name"],
         filter(lambda elem : elem != "None", row[["ElementType1","ElementType2"]].map(lambda x: x.replace("EPalElementType::","")).values) ,
