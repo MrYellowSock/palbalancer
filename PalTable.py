@@ -2,13 +2,13 @@ from typing import Callable
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QCheckBox
 from PyQt5.QtGui import QIcon
 from numpy.lib import math
-from Pal import Pal
+from PalModule import Pal
 from PyQt5.QtCore import Qt
-
+from Element import ElementTable
 class PalCell(QCheckBox):
     def __init__(self, pal: Pal, onStateChanged: Callable[[bool,Pal],None]):
         super().__init__()
-        elements = ','.join(pal.elements) 
+        elements = ','.join([ElementTable.instance().getElement(t).name for t in pal.elements]) 
         self.stateChanged.connect(lambda : onStateChanged(self.isChecked(),pal))
         self.setText(f"{pal.name}\n[{elements}]")  # Display name and elements in separate lines
         self.setIcon(QIcon(pal.avatar))
