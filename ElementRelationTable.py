@@ -28,9 +28,9 @@ class ElementRelationTable:
                           index = [element.name for element in ElementTable.instance().datas.values()])
         return df
     def WriteCSV(self):
-        self.GetElementRelationDF().to_csv('./resource/ElementRelationTable2.csv')
+        self.GetElementRelationDF().to_csv('./resource/ElementRelationTable.csv')
     def ReadCSV(self):
-        df:DataFrame = pd.read_csv('./resource/ElementRelationTable2.csv')
+        df:DataFrame = pd.read_csv('./resource/ElementRelationTable.csv')
         df.index = pd.Index( list(df.columns)[1:])
         self.data.clear()
         for t1,e1 in ElementTable.instance().datas.items():
@@ -38,7 +38,6 @@ class ElementRelationTable:
                 index = df.loc[e2.name,e1.name]
                 stats = index.split(",\n")
                 for s in stats:
-                    print(s)
                     match = re.search("(\S*)\s*:\s*(\S*)%", s)
                     if match != None:
                         status = StatusTable.instance().InitStatusByName(match.group(1),float(match.group(2)))

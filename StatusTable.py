@@ -13,12 +13,8 @@ class StatusTable:
         else:
             return None
     def InitStatusByName(self,name,val=None) -> IPalStatus:
-        print(name)
         for status in self.datas.values():
-            print('---')
-            print(status.name(),name)
             if status.name() == name:
-                print("Match")
                 return status.clone(val)
         return None
 statusTable = StatusTable()

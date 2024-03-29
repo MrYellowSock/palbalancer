@@ -48,7 +48,6 @@ if __name__ == "__main__":
     palTable: pd.DataFrame = pd.read_csv('./resource/PalData.csv')
     # ["Name", "MeleeAttack", "ShotAttack", "HP", "Image"]
     #print( palTable[["ElementType1","ElementType2"]].map(lambda x: x.replace("EPalElementType::","")))
-    print( palTable[["ElementType1","ElementType2"]].map(lambda x: x.replace("EPalElementType::","")).values)
     pals = palTable.apply(lambda row:     
          Pal(
             row["Name"],
@@ -58,8 +57,6 @@ if __name__ == "__main__":
             f'./resource/images/{row["Name"]}.png'
         ), axis=1
     )
-   # for i in pals:
-    #    print(list(i.elements))
     app = QApplication(sys.argv)
     screen = Window(pals)
     screen.show()
