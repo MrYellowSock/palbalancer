@@ -3,14 +3,14 @@ import pandas as pd
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
 
 class PalElementPowerTable(QTableWidget):
-    def __init__(self, elementPowerTable: pd.DataFrame):
+    def __init__(self, EntityRelationDF: pd.DataFrame):
         super().__init__()
-        self.setColumnCount(len(elementPowerTable.columns))
-        self.setRowCount(len(elementPowerTable))
-        self.setHorizontalHeaderLabels(elementPowerTable.columns)
-        for row in range(len(elementPowerTable)):
-            for col in range(len(elementPowerTable.columns)):
-                self.setItem(row, col, QTableWidgetItem(str(elementPowerTable.iloc[row, col])))
+        self.setColumnCount(len(EntityRelationDF.columns))
+        self.setRowCount(len(EntityRelationDF))
+        self.setHorizontalHeaderLabels(EntityRelationDF.columns)
+        for row in range(len(EntityRelationDF)):
+            for col in range(len(EntityRelationDF.columns)):
+                self.setItem(row, col, QTableWidgetItem(str(EntityRelationDF.iloc[row, col])))
 
         for row in range(self.rowCount()):
             self.setRowHeight(row, 60)  # Set the row height as per your requirement

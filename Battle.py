@@ -1,74 +1,74 @@
 from Status import IPalStatus
 from Element import ElementTable
 from PalModule import Pal
-class Attack :
-    def __init__(self,attacker,target) -> None:
-        self.damage = 1
-        self.attacker: Pal = attacker
-        self.target: Pal = target
-    def execute(self):
-        statusList = list(self.target.defensiveStatus.values()) + list(self.attacker.offensiveStatus.values())
-        statusList.sort(key=lambda status:status.priority)
-        for status in statusList:
-            status.execute(self)
-        self.target.health -= self.damage
-        #print(self.attacker.name,'attack',self.target.name,'with damage',self.damage,self.target.name,'Health :',self.target.health)
-
+from Attack import Attack
+from DeriveStatus import AgilityStatus
+from Status import PalStatusType
+from ElementRelationTable import ElementRelationTable
+class Battle:
+    def __init__(self,pal1:Pal,pal2:Pal) -> None:
+        self.pals = (pal1,pal2)
+        self.status = [dict(),dict()]
+        self.applyStatus()
+    def applyStatus(self):
+        statsLists :tuple[dict[type,list[IPalStatus]]] = ({},{})
+        for t1 in self.pals[0].elements:
+            for t2 in self.pals[1].elements:
+                #Many to Many Elements
+                instance = ElementRelationTable.Instance()
+                for i in range(2):
+                    j = (i+1)%2
+                    types = (t1,t2) if i == 0 else (t2,t1)
+                    if types in instance.data.keys():
+                        for stat in instance.data[types]:
+                            if stat.statusType() == PalStatusType.OFFENSIVE:
+                                if not stat.type()  in statsLists[i].keys():
+                                    statsLists[i][stat.type()]=[]
+                                statsLists[i][stat.type()].append(stat)
+                            elif stat.statusType() == PalStatusType.DEFENSIVE:
+                                if not stat.type()  in statsLists[j].keys():
+                                    statsLists[j][stat.type()]=[]
+                                statsLists[j][stat.type()].append(stat)
+        for i in range(2):
+            for t,stats in statsLists[i].items():
+                #Combine Same Type
+                self.status[i][t] = stats[0].combineMethod().execute(stats)
+                #Check empty
+                if len(self.status[i]) > 0:
+                    #Sort Data By Priority
+                    self.status[i] = dict(sorted(self.status[i].items(),key = lambda item:item[1].priority()))
+    def execute(self,sampleCount = 1):
+        result = 0
+        for i in range(2):
+            mn,mx = (0,sampleCount//2) if i == 0 else (sampleCount//2,sampleCount)
+            for j in range(mn,mx):
+                k=j%2
+                while self.pals[0].health > 0 and self.pals[1].health>0:
+                    attacker,target = self.pals[k],self.pals[1-k]
+                    atk = Attack(attacker,target)
+                    #Check Status Hit Rate
+                    for status in self.status[k].values():
+                        status.execute(atk)
+                    atk.execute()
+                    k=1-k
+                if self.pals[0].health >0:
+                    result+=1
+                self.pals[0].reset()
+                self.pals[1].reset()
+        
+        return result/sampleCount*100
+    
+          
+              
 class Composer:
     def __init__(self) -> None:
         pass
     def battle(crt1:Pal,crt2:Pal,amount = 1):
-        Composer.applyStatus(crt1,crt2)
-        sortFunc = lambda item:item[1].priority
-        crt1.defensiveStatus = dict(sorted(crt1.defensiveStatus.items(),key= sortFunc)) 
-        crt2.defensiveStatus = dict(sorted(crt2.defensiveStatus.items(),key= sortFunc)) 
-        crt1.offensiveStatus = dict(sorted(crt1.offensiveStatus.items(),key= sortFunc)) 
-        crt2.offensiveStatus = dict(sorted(crt2.offensiveStatus.items(),key= sortFunc)) 
-        result = 1
-        state = False
-        attacker = crt1
-        target = crt2
-        firstPal = crt1
-        for i in range(amount):
-            if not state and i>amount//2:
-                state = True
-                attacker,target  = target,attacker
-            while crt1.health >0 and crt2.health>0:
-                atk = Attack(attacker,target)
-                atk.execute()
-                attacker,target = target,attacker
-            if firstPal.health>0:
-                result+=1
-            crt1.resetHealth()
-            crt2.resetHealth()
-        crt1.reset()
-        crt2.reset()
-        return result/amount*100
-    def applyStatus(crt1:Pal,crt2:Pal):
-        stats1 :dict[type,list[IPalStatus]] = {}
-        stats2 :dict[type,list[IPalStatus]] = {}
-        for t1 in crt1.elements:
-            for t2 in crt2.elements:
-                table = ElementTable.instance()
-                e1 =table.getElement(t1)
-                if t2 in e1.effectStatus.keys():
-                    statusList = e1.effectStatus[t2]
-                    for stat in statusList:
-                        if stat.type in stats1:
-                            stats1[stat.type].append(stat)
-                        else:
-                            stats1[stat.type] = [stat]
-                e2 =table.getElement(t2)
-                if t1 in e2.effectStatus.keys():
-                    statusList = e2.effectStatus[t1]
-                    for stat in statusList:
-                        if stat.type in stats2 :
-                            stats2[stat.type].append(stat)
-                        else :
-                            stats2[stat.type] = [stat]
-        for t,statList in stats1.items():
-            stat:IPalStatus = statList[0].combineMethod.execute(list(statList))
-            crt1.setStatus(t,stat,stat.statusType)
-        for t,statList in stats2.items():
-            stat = statList[0].combineMethod.execute(list(statList))
-            crt2.setStatus(t,stat,stat.statusType)
+        return Battle(crt1,crt2).execute(amount)
+    
+    def battleAll(pal:Pal,palList:list[Pal],amount,isPrecise = False):
+        result = [Composer.battle(pal,pal2,amount) if pal != pal2 else -1 for pal2 in palList]
+        if not isPrecise:
+            result.remove(-1)
+        return result
+                

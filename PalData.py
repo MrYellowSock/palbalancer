@@ -28,18 +28,14 @@ class PalCard(QWidget):
         layout.addWidget(self.atkLabel)
         self.setLayout(layout)
 
-class PalMatch(QWidget):
-    def __init__(self,palA:Pal,palB:Pal):
+class PalData(QWidget):
+    def __init__(self,pal:Pal,palList:list[Pal]):
         super().__init__()
         layout = QHBoxLayout()
-        self.palAcard = PalCard(palA)
-        self.palBcard = PalCard(palB)
-        self.matchSummary = QLabel("Win rate "+str(Composer.battle(palA,palB,1000))+"%")
-        self.histrogram = HistogramWindow(np.random.normal(loc=0,scale=10,size=1000))
+        self.palAcard = PalCard(pal)
+        self.histrogram = HistogramWindow(np.array(Composer.battleAll(pal,palList,70)))
 
         layout.addWidget(self.palAcard)
-        layout.addWidget(self.palBcard)
-        layout.addWidget(self.matchSummary)
         layout.addWidget(self.histrogram)
         self.setLayout(layout)
         

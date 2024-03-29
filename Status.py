@@ -1,23 +1,38 @@
 from cloneModule import ICloneable
 from enum import Enum
+from Attack import Attack
 class PalStatusType(Enum):
     OFFENSIVE =1,
     DEFENSIVE =2
 
 class IPalStatus(ICloneable) :
     def __init__(self,val:float = 0) -> None:
-        self.name :str = '' 
         self.val :float = val
-        self.priority:int = 0
-        self.combineMethod : IStatCombineMethod
-        self.type:type 
-        self.statusType : PalStatusType 
-    def clone(self):
+   
+    @staticmethod
+    def name()->str:
         pass
-    def execute(self,attack:'Attack') -> None:
+    @staticmethod
+    def priority()->int:
+        pass
+    @staticmethod
+    def type()->type:
+        pass
+    @staticmethod
+    def statusType()->PalStatusType:
+        pass
+    @staticmethod
+    def combineMethod()->'IStatCombineMethod':
+        pass
+    
+    def clone(self,val = None):
+        pass
+    def execute(self,attack:Attack) -> None:
         pass
 
 class IStatCombineMethod :
     def execute(arr : list[IPalStatus]) -> IPalStatus:
         pass
+
+
     
