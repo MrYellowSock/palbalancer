@@ -16,10 +16,10 @@ class Window(QWidget):
         QWidget.__init__(self)
         layout = QVBoxLayout()
         self.setLayout(layout)
-        self.table = PalTable(pals, 2)
+        self.table = PalTable(pals)
         
         #self.table.onFullChanged(lambda pals: self.showMatch(pals[0],pals[1]))
-        self.table.onFullChanged(lambda pal: self.showData(pal[0],pals))
+        self.table.onFullChanged(lambda pal: self.showData(pal,pals))
         self.powerTable = PalElementPowerTable(ElementRelationTable.Instance().GetElementRelationDF())
         self.match = None
         

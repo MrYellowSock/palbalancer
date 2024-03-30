@@ -14,5 +14,7 @@ class ElementTable:
             return self.datas[t]
         else:
             return None
+    def stringToType(self,s:str):
+        return next(t for t,element in self.datas.items() if element.name == s)
     
 elementTable = ElementTable()
