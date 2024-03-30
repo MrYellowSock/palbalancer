@@ -67,19 +67,13 @@ class Composer:
     def battle(crt1:Pal,crt2:Pal,amount = 1):
         return Battle(crt1,crt2).execute(amount)
     
-    def battleAll(pal:Pal,palList:list[Pal],amount,isPrecise = False):
+    def battleAll(pal:Pal,palList:list[Pal],sampleSize=10,isPrecise = False):
         if pal is None or palList is None or len(palList) == 0:
             return None
         result = {}
-        data = [Composer.battle(pal,pal2,amount) if pal != pal2 else -1 for pal2 in palList]
+        data = [Composer.battle(pal,pal2,sampleSize) if pal != pal2 else -1 for pal2 in palList]
         data.sort()
         if not isPrecise:
             data.remove(-1)
-        length = len(data)
-
-        result['data'] = np.array(data)
-        result['mean'] = np.mean(data)
-        result['median'] = data[length//2] if len(data)%2 == 1 else (data[length//2]+data[length//2+1])/2
-        result['sd'] = np.sqrt(np.var(data))
-        return result
+        return np.array(data)
                 

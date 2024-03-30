@@ -32,5 +32,3 @@ class PalElementPowerTable(QTableWidget):
             if statusList is not None:
                 ElementRelationTable.Instance().setRelation(attackType,targetType,statusList)
                 ElementRelationTable.Instance().WriteCSV()
-            else:
-                print("Not Success")

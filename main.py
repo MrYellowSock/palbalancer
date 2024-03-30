@@ -6,11 +6,10 @@ from PyQt5.QtGui import QIcon
 from PalModule import Pal
 from PalTable import PalTable
 from PalElementPowerTable import PalElementPowerTable
-from PalMatch import PalMatch
 from PalData import PalData
 from Element import ElementTable
 from ElementRelationTable import ElementRelationTable
-
+from OverallTab import OverallTab
 class Window(QWidget):
     def __init__(self, pals:list[Pal]):
         QWidget.__init__(self)
@@ -21,20 +20,15 @@ class Window(QWidget):
         #self.table.onFullChanged(lambda pals: self.showMatch(pals[0],pals[1]))
         self.table.onFullChanged(lambda pal: self.showData(pal,pals))
         self.powerTable = PalElementPowerTable(ElementRelationTable.Instance().GetElementRelationDF())
+        self.overallTab = OverallTab(pals)
         self.match = None
         
         self.tabwidget = QTabWidget()
         self.tabwidget.addTab(self.table, "Pals")
         self.tabwidget.addTab(self.powerTable, "Elements")
+        self.tabwidget.addTab(self.overallTab, "Overall")
         layout.addWidget(self.tabwidget)
-        
-    def showMatch(self, pal1: Pal, pal2: Pal):
-        # Create a new match widget
-        if self.match:
-            self.tabwidget.removeTab(2)
-            self.match.deleteLater()
-        self.match = PalMatch(pal1, pal2)
-        self.tabwidget.addTab(self.match, "Match")
+
     def showData(self,pal1: Pal,pals: list[Pal]):
         if self.match:
             self.tabwidget.removeTab(2)
