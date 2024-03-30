@@ -64,8 +64,8 @@ class Battle:
 class Composer:
     def __init__(self) -> None:
         pass
-    def battle(crt1:Pal,crt2:Pal,amount = 1):
-        return Battle(crt1,crt2).execute(amount)
+    def battle(crt1:Pal,crt2:Pal,sampleSize = 1):
+        return Battle(crt1,crt2).execute(sampleSize)
     
     def battleAll(pal:Pal,palList:list[Pal],sampleSize=10,isPrecise = False):
         if pal is None or palList is None or len(palList) == 0:

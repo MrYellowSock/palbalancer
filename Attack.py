@@ -1,7 +1,7 @@
 from PalModule import Pal
 class Attack :
-    def __init__(self,attacker,target) -> None:
-        self.damage = 1
+    def __init__(self,attacker:Pal,target:Pal) -> None:
+        self.damage = attacker.atk
         self.attacker: Pal = attacker
         self.target: Pal = target
     def execute(self):
