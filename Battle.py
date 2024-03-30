@@ -5,6 +5,7 @@ from Attack import Attack
 from DeriveStatus import AgilityStatus
 from Status import PalStatusType
 from ElementRelationTable import ElementRelationTable
+import numpy as np
 class Battle:
     def __init__(self,pal1:Pal,pal2:Pal) -> None:
         self.pals = (pal1,pal2)
@@ -67,8 +68,18 @@ class Composer:
         return Battle(crt1,crt2).execute(amount)
     
     def battleAll(pal:Pal,palList:list[Pal],amount,isPrecise = False):
-        result = [Composer.battle(pal,pal2,amount) if pal != pal2 else -1 for pal2 in palList]
+        if pal is None or palList is None or len(palList) == 0:
+            return None
+        result = {}
+        data = [Composer.battle(pal,pal2,amount) if pal != pal2 else -1 for pal2 in palList]
+        data.sort()
         if not isPrecise:
-            result.remove(-1)
+            data.remove(-1)
+        length = len(data)
+
+        result['data'] = np.array(data)
+        result['mean'] = np.mean(data)
+        result['median'] = data[length//2] if len(data)%2 == 1 else (data[length//2]+data[length//2+1])/2
+        result['sd'] = np.sqrt(np.var(data))
         return result
                 

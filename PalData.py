@@ -1,9 +1,9 @@
 from typing import Callable
 from PyQt5.QtWidgets import   QWidget, QHBoxLayout,QVBoxLayout,QLabel,QMessageBox
 from PyQt5.QtGui import QImage,QPixmap
+from PyQt5.QtCore import Qt
 import matplotlib.pyplot as plt
 from PalModule import Pal
-from PyQt5.QtCore import Qt
 from Battle import Composer
 from Element import ElementTable
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -27,16 +27,41 @@ class PalCard(QWidget):
         layout.addWidget(self.elementLabel)
         layout.addWidget(self.atkLabel)
         self.setLayout(layout)
+class BenchnarkCard(QWidget):
+    def __init__(self,pal:Pal,palList:list[Pal],sampleSize = 70 ):
+        super().__init__()
+        result = Composer.battleAll(pal,palList,70)
+        self.histrogram = HistogramWindow(result['data'],name="Pal Win Rate Histogram",xLabel="Win Rate(%)")
+        self.meanLabel = QLabel(f"Mean : {result['mean']:.2f}")
+        self.medianLabel = QLabel(f"Median : {result['median']:.2f}")
+        self.sdLabel = QLabel(f"SD : {result['sd']:.2f}")
 
+        self.meanLabel.setAlignment(Qt.AlignCenter)
+        self.medianLabel.setAlignment(Qt.AlignCenter)
+        self.sdLabel.setAlignment(Qt.AlignCenter)
+        
+        descriptionWidget= QWidget()
+        descriptionLayout = QHBoxLayout()
+        descriptionLayout.addWidget(self.meanLabel)
+        descriptionLayout.addWidget(self.medianLabel)
+        descriptionLayout.addWidget(self.sdLabel)
+        descriptionWidget.setLayout(descriptionLayout)
+        
+        layout = QVBoxLayout()
+        layout.addWidget(self.histrogram)
+        layout.addWidget(descriptionWidget)
+        self.setLayout(layout)
 class PalData(QWidget):
     def __init__(self,pal:Pal,palList:list[Pal]):
         super().__init__()
         layout = QHBoxLayout()
         self.palAcard = PalCard(pal)
-        self.histrogram = HistogramWindow(np.array(Composer.battleAll(pal,palList,70)))
+        self.benmarkCard = BenchnarkCard(pal,palList)
+        
+        
 
         layout.addWidget(self.palAcard)
-        layout.addWidget(self.histrogram)
+        layout.addWidget(self.benmarkCard)
         self.setLayout(layout)
         
         

@@ -46,8 +46,6 @@ class Window(QWidget):
 
 if __name__ == "__main__":
     palTable: pd.DataFrame = pd.read_csv('./resource/PalData.csv')
-    # ["Name", "MeleeAttack", "ShotAttack", "HP", "Image"]
-    #print( palTable[["ElementType1","ElementType2"]].map(lambda x: x.replace("EPalElementType::","")))
     pals = palTable.apply(lambda row:     
          Pal(
             row["Name"],
