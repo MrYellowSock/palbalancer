@@ -1,0 +1,10 @@
+index,Normal,Dark,Dragon,Ice,Fire,Water,Electricity,Earth,Leaf
+Normal,n,<n,n,n,n,n,n,n,n
+Dark,>a,a,<a,a,a,a,a,a,a
+Dragon,a,>a,a,<a,a,a,a,a,a
+Ice,a,a,>a,a,<a,a,a,a,a
+Fire,f,f,f,>f,f,<f,f,f,>f
+Water,a,a,a,a,>a,a,<a,a,a
+Electricity,a,a,a,a,a,>a,a,<a,a
+Earth,a,a,a,a,a,a,>a,a,<a
+Leaf,a,a,a,a,<a,a,a,>a,a

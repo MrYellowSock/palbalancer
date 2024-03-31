@@ -1,0 +1,10 @@
+index,Normal,Dark,Dragon,Ice,Fire,Water,Electricity,Earth,Leaf
+Normal,0,0,0,0,0,0,0,0,0
+Dark,1,0,0,0,0,0,0,0,0
+Dragon,0,1,0,0,0,0,0,0,0
+Ice,0,0,1,0,0,0,0,0,0
+Fire,0,0,0,1,0,0,0,0,1
+Water,0,0,0,0,1,0,0,0,0
+Electricity,0,0,0,0,0,1,0,0,0
+Earth,0,0,0,0,0,0,1,0,0
+Leaf,0,0,0,0,0,0,0,1,0

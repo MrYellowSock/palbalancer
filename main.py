@@ -39,7 +39,7 @@ class Window(QWidget):
         
 
 if __name__ == "__main__":
-    palTable: pd.DataFrame = pd.read_csv('./resource/PalData.csv')
+    palTable: pd.DataFrame = pd.read_csv('./resource/PalDataSingleElement.csv')
     pals = palTable.apply(lambda row:     
          Pal(
             row["Name"],
