@@ -4,7 +4,7 @@ from PyQt5.QtGui import QIcon
 from numpy.lib import math
 from PalModule import Pal
 from PyQt5.QtCore import Qt
-from Element import ElementTable
+from ElementTable import ElementTable
 class PalCell(QTableWidgetItem):
     def __init__(self, pal: Pal, onStateChanged: Callable[[bool,Pal],None]):
         super().__init__()

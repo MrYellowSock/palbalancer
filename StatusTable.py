@@ -1,5 +1,5 @@
 from Status import IPalStatus
-import DeriveStatus
+from DeriveStatus import *
 class StatusTable:
     def instance() -> 'StatusTable': 
         return statusTable
@@ -18,5 +18,5 @@ class StatusTable:
                 return status.clone(val)
         return None
 statusTable = StatusTable()
-statusTable.datas[DeriveStatus.CriticalStatus]=DeriveStatus.CriticalStatus()
-statusTable.datas[DeriveStatus.AgilityStatus]=DeriveStatus.AgilityStatus()
+statusTable.datas[CriticalStatus]=CriticalStatus()
+statusTable.datas[AgilityStatus]=AgilityStatus()

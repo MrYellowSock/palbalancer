@@ -1,5 +1,5 @@
 from Status import IPalStatus
-from Element import ElementTable
+from ElementTable import ElementTable
 from PalModule import Pal
 from Attack import Attack
 from DeriveStatus import AgilityStatus

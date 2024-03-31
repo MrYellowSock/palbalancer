@@ -5,9 +5,9 @@ from PyQt5.QtCore import Qt
 import matplotlib.pyplot as plt
 from PalModule import Pal
 from Battle import Composer
-from Element import ElementTable
+from ElementTable import ElementTable
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from HistrogramWindow import HistogramWidget
+from HistrogramWidget import HistogramWidget
 import numpy as np
 class PalCard(QWidget):
     def __init__(self, pal:Pal):

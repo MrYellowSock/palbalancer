@@ -1,5 +1,6 @@
 import numpy as np
-from Element import IElement,ElementTable
+from Element import IElement
+from ElementTable import ElementTable
 class Pal:
     def __init__(self, name: str, elements: list[str], attacks: list[int],health:int, avatar: str):
         self.name = name

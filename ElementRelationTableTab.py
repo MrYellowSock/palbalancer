@@ -2,7 +2,7 @@
 import pandas as pd
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
 from ElementRelationTable import ElementRelationTable
-from Element import ElementTable
+from ElementTable import ElementTable
 class PalElementPowerTable(QTableWidget):
     def __init__(self, EntityRelationDF: pd.DataFrame):
         super().__init__()

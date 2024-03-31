@@ -1,4 +1,5 @@
-from Element import IElement,ElementTable
+from Element import IElement
+from ElementTable import ElementTable
 from Status import IPalStatus
 import pandas as pd
 from pandas import DataFrame

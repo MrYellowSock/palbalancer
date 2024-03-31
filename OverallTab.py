@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
-from HistrogramWindow import HistogramWidget
+from HistrogramWidget import HistogramWidget
 from PalModule import Pal
 from Battle import Composer
 import numpy as np

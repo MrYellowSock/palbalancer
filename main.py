@@ -5,9 +5,9 @@ import pandas as pd
 from PyQt5.QtGui import QIcon
 from PalModule import Pal
 from PalTable import PalTable
-from PalElementPowerTable import PalElementPowerTable
-from PalData import PalData
-from Element import ElementTable
+from ElementRelationTableTab import PalElementPowerTable
+from PalDataTab import PalData
+from ElementTable import ElementTable
 from ElementRelationTable import ElementRelationTable
 from OverallTab import OverallTab
 class Window(QWidget):

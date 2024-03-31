@@ -1,6 +1,4 @@
-from Status import IPalStatus
-from Element import IElement,ElementTable
-import DeriveStatus
+from Element import IElement
 
 class FireElement(IElement):
     def __init__(self) -> None:
@@ -39,13 +37,3 @@ class DragonElement(IElement):
     def __init__(self) -> None:
         self.name : str = 'Dragon'
         self.type :type = DragonElement
-table = ElementTable.instance()
-table.add(FireElement())
-table.add(WaterElement())
-table.add(EarthElement())
-table.add(DarkElement())
-table.add(IceElement())
-table.add(LeafElement())
-table.add(NormalElement())
-table.add(ElectricityElement())
-table.add(DragonElement())
