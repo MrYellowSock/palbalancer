@@ -1,17 +1,17 @@
 ,Fire,Water,Earth,Dark,Ice,Leaf,Normal,Electricity,Dragon
 Fire,AGI : 30.00%,"AGI : 30.00%,
 CRT : 25.00%",AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%
-Water,AGI : 30.00%,"CRT : 30.00%,
-AGI : 35.00%",AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%
-Earth,AGI : 30.00%,"CRT : 50.00%,
+Water,AGI : 30.00%,"CRT : 100.00%,
 AGI : 30.00%",AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%
-Dark,AGI : 30.00%,"CRT : 60.00%,
+Earth,AGI : 30.00%,"CRT : 100.00%,
 AGI : 30.00%",AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%
-Ice,AGI : 30.00%,"CRT : 70.00%,
+Dark,AGI : 30.00%,"CRT : 100.00%,
 AGI : 30.00%",AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%
-Leaf,AGI : 30.00%,"CRT : 80.00%,
+Ice,AGI : 30.00%,"CRT : 100.00%,
 AGI : 30.00%",AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%
-Normal,AGI : 30.00%,"CRT : 90.00%,
+Leaf,AGI : 30.00%,"CRT : 100.00%,
+AGI : 30.00%",AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%
+Normal,AGI : 30.00%,"CRT : 100.00%,
 AGI : 30.00%",AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%
 Electricity,AGI : 30.00%,"CRT : 100.00%,
 AGI : 30.00%",AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%,AGI : 30.00%

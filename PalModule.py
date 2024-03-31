@@ -10,7 +10,7 @@ class Pal:
         for t,e in ElementTable.instance().datas.items():
             if e.name in elements:
                 self.elements.add(e.type)
-        self.atk = np.sum(attacks)
+        self.atk = np.average(attacks)/4
         self.mxHealth = health
         self.health = self.mxHealth
         self.avatar = avatar    

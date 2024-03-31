@@ -42,7 +42,7 @@ class HistogramCanvas(FigureCanvas):
     def plot_histogram(self,data,name,xLabel,yLabel):
 
         # Create histogram
-        self.ax.hist(data, bins=30, alpha=0.5, color='blue', edgecolor='black')
+        self.ax.hist(data, alpha=0.5, color='blue', edgecolor='black')
 
         # Set labels and title
         self.ax.set_title(name)
