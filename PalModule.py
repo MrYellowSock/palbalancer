@@ -3,6 +3,7 @@ from Element import IElement,ElementTable
 class Pal:
     def __init__(self, name: str, elements: list[str], attacks: list[int],health:int, avatar: str):
         self.name = name
+        self.elements_name = elements
         self.elements : set[type] = set()
         #Extract Element From Instance Table
         for t,e in ElementTable.instance().datas.items():
